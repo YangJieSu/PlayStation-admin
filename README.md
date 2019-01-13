@@ -1,8 +1,7 @@
 # Vue.js 購物網站-ADMIN管理系統
 
 ## Demo
-https://yangjiesu.github.io/Shopping-Vue/dist
-
+https://yangjiesu.github.io/PlayStation-admin/dist
 ## Intro Management Systems
 
 ### 1. Sign In
