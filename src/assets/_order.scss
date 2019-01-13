@@ -1,0 +1,37 @@
+.card-body {
+  padding: 10px 15px;
+}
+.card-footer {
+  padding: 10px 15px;
+}
+.prod-card {
+  border: 1px solid #ccdbd4;
+  overflow: hidden;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+}
+.prod-info {
+  h5 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 50px;
+    overflow: hidden;
+    font-size: $font-size-base;
+    color: $black;
+  }
+}
+.modal-body {
+  .title {
+    border-bottom: 2px solid $primary;
+  }
+  p {
+    font-size: $font-size-base;
+  }
+}

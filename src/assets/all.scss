@@ -1,0 +1,18 @@
+// 讀取 Bootstrap 樣式
+@import "~bootstrap/scss/functions";
+@import "./variables";
+@import "~bootstrap/scss/bootstrap";
+
+
+@import "./dashboard";
+@import "./order";
+@import "./customer";
+
+
+
+
+// .btn-primary {
+//     color: #007bff;
+//     background-color: transparent;
+//     border-color: #007bff;
+// }
