@@ -193,7 +193,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             <button type="button" class="btn btn-primary" @click.prevent="updateProduct">確認</button>
           </div>
         </div>
@@ -224,10 +224,10 @@
             <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
             <button
               type="button"
-              class="btn btn-dange"
+              class="btn btn-danger"
               @click.prevent="delProduct(tempProduct.id)"
             >確認刪除</button>
           </div>
@@ -295,6 +295,7 @@ export default {
         }/admin/product/${vm.tempProduct.id}`;
         httpmethod = "put";
       }
+      // 可做驗證，防止無資料卻能新增產品
       this.$http[httpmethod](api, { data: vm.tempProduct }).then(response => {
         // console.log(response.data);
         if (response.data.success) {
@@ -309,7 +310,6 @@ export default {
       vm.tempProduct = Object.assign({}, item);
       $("#delProductModal").modal("show");
     },
-
     delProduct(id) {
       // 刪除商品
       const vm = this;
@@ -331,6 +331,7 @@ export default {
     uploadPicture() {
       // 上傳商品圖片
       const vm = this;
+      // files <= 此名稱與上方  ref=files 相同 ，可以自定義名稱
       let pictureFile = vm.$refs.files.files[0];
       let pictureData = new FormData();
       let api = `${process.env.API_PATH}/api/${

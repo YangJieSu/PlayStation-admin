@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Alert></Alert>
     <div class="sign-box d-flex align-items-start justify-content-center">
       <div class="card border-0">
         <h5 class="card-header card-header-bg text-white text-center">
@@ -34,7 +35,11 @@
 </template>
 
 <script>
+import Alert from '@/components/AlertMessage';
   export default {
+    components: {
+      Alert
+    },
     data() {
       return {
         user: {
@@ -55,12 +60,12 @@
         localStorage.setItem('isRemember', vm.user.isRemember);
         vm.user.isRemember ? localStorage.setItem('userAccount', vm.user.username) : localStorage.removeItem('userAccount');
         this.$http.post(api, vm.user).then((response) => {
-          // console.log(response.data);
+          console.log(response.data);
           vm.status.itemLoading = false;
           if (response.data.success) {
             vm.$router.push('/admin/products');
           } else {
-            alert(response.data.message);
+            vm.$bus.$emit('AlertMessage', `【${response.data.message}】`, 'danger');
           };
         });
       },

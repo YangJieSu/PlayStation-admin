@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in orders" :key="item.id" v-if="orders.length">
+        <tr v-for="item in orders" :key="item.id">
           <th>{{ item.create_at | date }}</th>
           <td v-if="item.user">{{ item.user.name }}</td>
           <td>
@@ -32,29 +32,9 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>   
 
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item" :class="{ 'disabled' : !pagination.has_pre }">
-          <a class="page-link" href="#" aria-label="Previous"
-            @click.prevent="getOrders(pagination.current_page - 1)">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item" v-for="(page, index) in pagination.total_pages" :key="index"
-          :class="{ 'active' : pagination.current_page == page }">
-          <a class="page-link" href="#" @click.prevent="getOrders(page)">{{ page }}</a></li>       
-        <li class="page-item" :class="{ 'disabled' : !pagination.has_next }">
-          <a class="page-link" href="#" aria-label="Next"
-            @click.prevent="getOrders(pagination.current_page + 1)">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <pagination :page-data="pagination" @changepage="getOrders"></pagination>
     
     <!--查看 modal-->
     <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

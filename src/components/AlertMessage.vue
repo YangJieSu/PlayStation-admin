@@ -1,6 +1,6 @@
 <template>
-  <div class="message-alert">
-    <div class="alert alert-dismissible"
+  <div class="message-alert" :class="{ 'active': messages.length !== 0 }">
+    <div class="alert alert-dismissible mb-0 rounded-0"
       :class="'alert-' + item.status"
       v-for="(item, i) in messages" :key="i">
       {{ item.message }}
@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: 'Navbar',
   data() {
     return {
       messages: [],
@@ -58,12 +57,3 @@ export default {
 };
 </script>
 
-<style scope>
-.message-alert {
-  position: fixed;
-  max-width: 50%;
-  top: 56px;
-  right: 20px;
-  z-index: 1100;
-}
-</style>

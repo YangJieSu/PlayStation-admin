@@ -43,40 +43,7 @@
           </div>
         </div>
       </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" :class="{ 'disabled' : !pagination.has_pre }">
-            <a
-              class="page-link"
-              href="#"
-              aria-label="Previous"
-              @click.prevent="getProducts(pagination.current_page - 1)"
-            >
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li
-            class="page-item"
-            v-for="(page, index) in pagination.total_pages"
-            :key="index"
-            :class="{ 'active' : pagination.current_page == page }"
-          >
-            <a class="page-link" href="#" @click.prevent="getProducts(page)">{{ page }}</a>
-          </li>
-          <li class="page-item" :class="{ 'disabled' : !pagination.has_next }">
-            <a
-              class="page-link"
-              href="#"
-              aria-label="Next"
-              @click.prevent="getProducts(pagination.current_page + 1)"
-            >
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <pagination :page-data="pagination" @changepage="getProducts"></pagination>
     </div>
 
     <div
@@ -107,18 +74,19 @@
               <del class="font-italic" v-if="product.price">原價 {{ product.origin_price | currency }} 元</del>
               <div class="h5 text-danger font-weight-bold" v-if="product.price">售價 {{ product.price | currency }} 元</div>
             </div>
-            <select name class="form-control mt-3" v-model="product.num">
+            <select name class="form-control mt-3" v-model="buyNum">
+              <option value="0" selected disabled>請選擇商品數量</option>
               <option :value="num" v-for="num in 10" :key="num">選購 {{num}} {{product.unit}}</option>
             </select>
           </div>
           <div class="modal-footer">
             <div class="text-muted text-nowrap mr-3">小計
-              <strong>{{ product.num * product.price | currency }}</strong> 元
+              <strong>{{ buyNum * product.price | currency }}</strong> 元
             </div>
             <button
               type="button"
               class="btn btn-primary"
-              @click.prevent="addtoCart(product.id, product.num)"
+              @click.prevent="addtoCart(product.id, buyNum)"
             >
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem == product.id"></i>
               加到購物車
@@ -139,7 +107,7 @@
             <th class="text-center">單價</th>
           </thead>
           <tbody>
-            <tr v-for="(item) in carts.carts" :key="item.id" v-if="carts.carts">
+            <tr v-for="(item) in carts.carts" :key="item.id">
               <td class="align-middle">
                 <button class="btn btn-outline-danger btn-sm" @click.prevent="removeCart(item.id)">
                   <i class="far fa-trash-alt"></i>
@@ -168,7 +136,7 @@
           <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model="coupon_code">
           <div class="input-group-append">
             <button
-              class="btn btn-outline-secondary"
+              class="btn btn-primary"
               type="button"
               @click.prevent="addCouponCode"
             >套用優惠碼</button>
@@ -264,6 +232,7 @@ export default {
       carts: {},
       coupon_code: "",
       pagination: {},
+      buyNum: 1,
       form: {
         user: {}
       },
@@ -299,6 +268,7 @@ export default {
         console.log(response.data);
         if (response.data.success) {
           vm.product = response.data.product;
+          vm.buyNum = 1;
           $("#productModal").modal("show");
         }
       });

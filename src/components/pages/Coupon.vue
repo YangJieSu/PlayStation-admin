@@ -134,16 +134,8 @@ import $ from 'jquery';
         },
         isNew: false,
         isLoading: false,
-        // due_date: new Date(),
       };
     },
-    // watch: {
-    //   due_date() {
-    //     const vm = this;
-    //     const timestamp = Math.floor(new Date(vm.due_date) / 1000);
-    //     vm.tempCoupon.due_date = timestamp;
-    //   },
-    // },
     methods: {
       getCoupons(page = 1) {
         // 取得優惠券
@@ -164,9 +156,6 @@ import $ from 'jquery';
           vm.isNew = true;
         } else {
           vm.tempCoupon = Object.assign({}, item);
-          // const dateAndTime = new Date(vm.tempCoupon.due_date * 1000).toISOString().split('T');
-          // console.log(dateAndTime);
-          // vm.due_date = dateAndTime[0];
           vm.isNew = false;
         };
         $('#couponModal').modal('show');

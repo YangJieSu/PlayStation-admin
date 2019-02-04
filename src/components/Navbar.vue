@@ -94,13 +94,14 @@ export default {
     userCheck() {
       // 登入驗證
       const api = `${process.env.API_PATH}/api/user/check`;
+      const vm = this;
       this.$http.post(api).then(response => {
         console.log(response.data);
         if (response.data.success) {
-          this.isLogin = true;
+          vm.isLogin = true;
         } else {
-          this.isLogin = false;
-          alert("您還沒有登入哦！ 請先登入");
+          vm.isLogin = false;
+          vm.$bus.$emit('AlertMessage', '您還沒有登入哦！ 請先登入', 'danger');
         }
       });
     },

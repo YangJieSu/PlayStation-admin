@@ -9,10 +9,16 @@
 @import "./customer";
 
 
-
-
-// .btn-primary {
-//     color: #007bff;
-//     background-color: transparent;
-//     border-color: #007bff;
-// }
+// 提示訊息
+.message-alert {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	z-index: 1100;
+	transform: translateY(-100%);
+	transition: all 0.3s;
+	&.active {
+		transform: translateY(0%);
+	}
+}

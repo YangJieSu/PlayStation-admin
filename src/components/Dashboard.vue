@@ -3,7 +3,6 @@
     <Navbar></Navbar>
     <Alert></Alert>
     <div class="container">
-      <!-- <Sidebar></Sidebar> -->
       <main role="main">
         <router-view></router-view>
       </main>
@@ -13,7 +12,6 @@
 
 <script>
 import Navbar from '@/components/Navbar';
-// import Sidebar from '@/components/Sidebar';
 import Alert from '@/components/AlertMessage'
 
 export default {
@@ -22,7 +20,6 @@ export default {
   },
   components: {
     Navbar,
-    // Sidebar,
     Alert,
   },
 }; 
