@@ -26,7 +26,7 @@
             class="page-link"
             href="#"
             aria-label="Next"
-            @click.prevent="getProducts(pageData.current_page + 1)"
+            @click.prevent="changePage(pageData.current_page + 1)"
           >
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
