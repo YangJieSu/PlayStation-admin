@@ -1,7 +1,7 @@
 # Vue.js 購物網站-ADMIN管理系統
 
 ## Demo
-https://yangjiesu.github.io/PlayStation-admin/dist
+https://syj0905.github.io/PlayStation-admin/dist
 # 功能
 本作品其主要功能有：
 * 後台:商品管理、客戶訂單管理、優惠券管理
